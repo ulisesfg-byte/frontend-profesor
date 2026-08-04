@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Cursos</title>
+
+    <meta name="descripcion" content="Pagina de Cursos del profesor Esteban"><!--Sirve para poner descripcion a tu pagina en navegadores-->
+    <meta name="robots" content="index, follow "><!-- Sirve para seguir links-->
+    <meta name="theme-color" content="#8f7ada"><!--CAmbia el color de la barra e busqueda-->
+    <link rel="icon" type="imagen/jpg" href="../IMAGENES/logo.png"><!--Le pone icono a la pestaña de tu pagina-->
+    <link rel="Alternate" href="Inicio.html" hreflang="es-GB">  <!--Para indicar el idioma y tarducciones de nuestra pagina-->
+    <link rel="canonical" href="Inicio.html"> <!--Para saber que es la pagina principal-->
+
+    <link rel="stylesheet" href="../CSS/EstilosGenerales.css">
+    <link rel="stylesheet" href="../CSS/Inicioestilos.css">
+</head>
+<body>
+    <header>
+    <h1 class="TituloPag">
+    <img src="" alt="Logo" class="neo-logo">
+    <div class="titulo-textos">
+        <span>Esteban Gonzàlez</span>
+        <span class="subtitle">Tutoring & Languages</span>
+    </div>
+    </h1>
+    <nav class="main-nav">
+        <!-- Un botón normal y limpio con un ID para identificarlo -->
+        <button id="hamburger-btn" class="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+    <ul id="nav-links" class="nav-links">
+        <li><a href="#Acerca-de-Mi">Acerca de mi</a></li>
+        <li><a href="#beneficios">beneficios</a></li>
+        <li><a href="#cursos">Cursos</a></li>
+        <li><a href="#reseña">Reseñas</a></li>           
+    </ul>
+    </nav>
+    </header>
+
+    <section id= "PF" class="Perfil-facebook elemento-animado">
+        <img 
+            id="Photo-Portada"  
+            title="Foto de Portada" 
+            src=""
+            />
+
+        <div class="perfil-header-info elemento-animado">
+        <img 
+            id="Photo-Perfil" 
+            src="" 
+            title="Foto de Perfil"
+            />
+            <div class="Datos-perfil">
+                <h2 class="Nombre"></h2>
+                <h3 class="Profesion"> </h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="Acerca-de-Mi">
+        <div class="Acercademi">
+            <div class="Acercademi-titulo">Acerca de Mi</div>
+            <p></p>
+        </div>
+    </section>
+
+    <section id="beneficios" class="seccion-beneficios">
+        <h2 class="elemento-animado">¿Por qué tomar estos cursos?</h2>
+
+        <!-- Tarjeta 1 -->
+        <div class="tarjeta-beneficio elemento-animado">
+            <div class="icono-flotante">
+                <img src="" alt="Icono inglés conversacional">
+            </div>
+            <div class="contenido-tarjeta">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="tarjeta-beneficio elemento-animado">
+            <div class="icono-flotante">
+                <img src="" alt="Icono situaciones reales">
+            </div>
+            <div class="contenido-tarjeta">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="tarjeta-beneficio elemento-animado">
+            <div class="icono-flotante">
+                <img src="" alt="Icono situaciones reales">
+            </div>
+            <div class="contenido-tarjeta">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 4 -->
+        <div class="tarjeta-beneficio elemento-animado">
+            <div class="icono-flotante">
+                <img src="" alt="Icono situaciones reales">
+            </div>
+            <div class="contenido-tarjeta">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cursos" class="Mis-cursos">
+        <h2 class="titulo elemento-animado">Nuestros Cursos</h2>
+    
+    <div class="cursos-container">
+        <!-- Tarjeta de Curso 1 -->
+        <article class="curso-card elemento-animado">
+            <!-- Contenedor para la imagen (donde aplicaremos el efecto zoom :hover) -->
+            <div class="curso-image-wrapper">
+                <img src="" alt="Miniatura del Curso de matematicas" class="curso-img">
+            </div>
+            <div class="curso-info">
+                <h3 class="curso-titulo"></h3>
+            </div>
+        </article>
+
+        
+    </section>
+
+    <section id="reseña" class="reseñas">
+        <h2 class="titulo-reseñas elemento-animado">Lo que dicen nuestros alumnos</h2>
+        <div class="reviews-container elemento-animado">
+            <iframe src="https://padlet.com/embed/cko675knuc418e16" frameborder="0" 
+            allow="camera;microphone;geolocation;display-capture;clipboard-write"
+            ></iframe>
+            
+        </div>
+    </section>
+
+    <footer id="contacto"> 
+        <div class="footer-content elemento-animado">
+            <p class="copy">&copy; 2026 Esteban Gonzàlez Tutoring & Languages. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="#" target="_blank" class="whatsapp-flotante" id="whatsapp-flotante">
+    <img src="../Iconos/whatsapp.png" alt="WhatsApp">
+    </a>
+        
+</body>
+<script src="../JS/animaciones.js"></script>
+<script src="../JS/conector.js"></script>
+<script src="../JS/Funciondelheader.js"></script>
+<script src="../JS/conectorcursos.js?v=99" defer></script>
+</html>

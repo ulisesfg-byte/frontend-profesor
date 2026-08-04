@@ -1,0 +1,28 @@
+/* Resetea los estilos por defecto del navegador */
+* {
+    margin: 0;/* Quita el margen de las etiquetas por defecto del navegador */
+    padding: 0;/* Borra el relleno de las listas */
+    box-sizing: border-box; /* Limpia y deja en 0 las colision de las cajas */
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;/* Tipografias*/
+    background-color: #ffffff; /* Color del fondo */
+    color: #000000; /* Color de la letra */
+    line-height: 1.6; /* Separacion entre renglones */
+}
+
+/* Espaciado general para todas tus secciones */
+section {
+    padding: 60px 20px; /* 60px arriba/abajo para que respiren, 20px a los lados */
+    max-width: 1200px;  /* Evita que el contenido se estire infinito en pantallas gigantes */
+    margin: 0 auto;     /* Centra perfectamente las secciones en la pantalla */
+}
+
+/* Tu clase compartida para todos los encabezados */
+.titulo {
+    font-size: 2rem;       /* Tamaño grande y legible en móviles */
+    text-align: left;     /* Centra el texto */
+    margin-bottom: 30px;   /* Separa el título del contenido que va abajo */
+    font-weight: 700;      /* Hace la letra más gruesa/atractiva */
+    position: relative;    /* Por si después queremos meterle una línea decorativa abajo */
+}

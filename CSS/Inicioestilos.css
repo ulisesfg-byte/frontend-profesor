@@ -1,0 +1,854 @@
+/* ========================================== */
+/* HEADER FLOTANTE Y COMPONENTES */
+/* ========================================== */
+
+header {
+    background-color: #120dac;         /* El color morado que ya tienes en tu página */
+    padding: 10px 20px;                /* Espaciado interno para que respiren el título y la hamburguesa */
+    display: flex;                     /* Activamos Flexbox para alinear en fila horizontal */
+    flex-direction: row;               
+    justify-content: space-between;    /* Título a la izquierda, hamburguesa a la derecha */
+    align-items: center;               /* Centrado vertical perfecto */                      /* Le da prioridad alta para que flote por encima de cualquier otra sección */
+    margin: 0;                         /* Quitamos cualquier margen para que no flote a los lados */
+    position: fixed;                   /* "Congela" el header arriba; no se moverá aunque hagas scroll */
+    top: 0;                            /* Lo pega al límite superior exacto de la pantalla */
+    left: 0;                           /* Lo pega al límite izquierdo exacto de la pantalla */
+    width: 100%;                       /* Lo obliga a estirarse de lado a lado de la pantalla */
+    box-sizing: border-box;            /* Evita que el padding sume tamaño extra y cree scroll horizontal */   
+    z-index: 1000;                     /* Prioridad máxima para que ningún contenido pase por encima del header */
+}
+
+.neo-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 0px; /* O 50% si lo prefieres totalmente redondo */
+    background-color: #120dac;
+}
+
+header .TituloPag {
+    display: flex;
+    align-items: center; /* Centra el logo y el texto verticalmente */
+    gap: 15px;           /* ¡Aquí está la separación perfecta! */
+    font-size: 1.4rem;                 /* Tamaño de la tipografía del título principal */
+    font-weight: 700;                  /* Grosor máximo (Black/Heavy) para darle un look rudo e impactante */
+    color: #ffffff;                    /* Texto completamente blanco */
+    margin: 0;                         /* Resetea y elimina cualquier margen que el navegador ponga por defecto */
+}
+
+/* Nuevo contenedor para apilar los textos verticalmente */
+.titulo-textos {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos específicos para el subtítulo */
+.TituloPag .subtitle {
+    font-family: sans-serif; /* Cambia esto por la fuente que quieras */
+    font-size: 0.85rem;                          /* Tamaño más pequeño */
+    font-weight: 400;                            /* Menos grueso si lo deseas */
+    opacity: 0.9;                                /* Opcional: un toque sutil de transparencia */
+}
+
+
+/* El botón contenedor de la hamburguesa (Convertido en un <button> real) */
+.hamburger-btn {
+    display: flex;                     /* Activamos Flexbox en el botón */
+    flex-direction: column;            /* Apila las tres líneas internas una debajo de la otra */
+    justify-content: space-between;    /* Distribuye el espacio para que las líneas se separen equitativamente */
+    width: 28px;                       /* Ancho total que va a medir el botón hamburguesa */
+    height: 20px;                      /* Alto total que va a ocupar el espacio del botón */
+    background: none;                  /* Elimina el fondo gris que los botones traen por defecto */
+    border: none;                      /* Elimina el borde gris/3D clásico de los botones nativos */
+    padding: 0;                        /* Quita el espaciado interno por defecto para que no altere el tamaño */
+    cursor: pointer;                   /* Transforma el cursor en una mano indicando que es totalmente clickeable */
+}
+
+/* Las 3 líneas individuales de la hamburguesa (los <span> dentro del botón) */
+.hamburger-btn span {
+    display: block;                    /* Hace que cada línea se comporte como un bloque sólido */
+    height: 4px;                       /* Grosor de cada una de las líneas */
+    width: 100%;                       /* Hace que se estiren al 100% del ancho del botón (28px) */
+    background-color: #ffffff;         /* Color negro sólido para las líneas */
+    border: 1px solid #000000;         /* Un mini borde negro para reforzar el estilo tosco y plano */
+    border-radius: 2px;                /* Redondea un poquito las puntas de cada línea */
+    transition: all 0.25s ease-in-out; /* Controla la velocidad y suavidad de la animación al transformarse en "X" */
+}
+
+/* --- LA LISTA DESPLEGABLE (MENÚ QUE CAE) --- */
+.nav-links {
+    list-style: none;                  /* Limpia y elimina por completo los puntitos negros de la lista (<ul>) */
+    padding: 0;                        /* Resetea el padding que las listas traen por defecto a la izquierda */
+    margin: 0;                         /* Elimina los márgenes automáticos de la lista */
+    position: absolute;                /* Lo saca del flujo normal para que flote sin empujar el resto de la página */
+    top: 115%;                         /* Lo posiciona exactamente un 15% abajo del límite inferior del header */
+    left: 0;                           /* Lo alinea perfectamente con el borde izquierdo del header */
+    width: 100%;                       /* Obliga a la tarjeta desplegable a medir el mismo ancho que el header */
+    background-color:#120dac;         /* Fondo blanco para que tape el contenido de abajo al abrirse */
+    border: 3px solid #000000;         /* Borde grueso idéntico al del header para mantener consistencia visual */
+    border-radius: 12px;               /* Esquinas redondeadas acordes al diseño de las tarjetas */    
+    display: flex;                     /* Activamos Flexbox dentro de la lista */
+    flex-direction: column;            /* Acomoda los enlaces en forma de columna (uno abajo del otro) */
+    gap: 8px;                          /* Deja una separación pequeña e igual entre cada opción del menú */
+    padding: 12px;                     /* Espacio interno para que los enlaces no peguen con los bordes negros */
+    /* ESTADO INICIAL COMPLETAMENTE OCULTO */
+    opacity: 0;                        /* Hace que el menú empiece siendo totalmente invisible */
+    transform: translateY(-8px);       /* Lo encoge 8px hacia arriba para guardarlo sutilmente tras el header */
+    pointer-events: none;              /* Bloquea por completo los clicks mientras esté oculto o invisible */
+    
+    /* Animación cúbica personalizada que le da un efecto "elástico" o de rebote al abrirse */
+    transition: all 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+/* Enlaces individuales de navegación (Las etiquetas <a> dentro de la lista) */
+.nav-links a {
+    text-decoration: none;             /* Elimina la línea azul de subrayado que los enlaces traen por defecto */
+    color: #ffffff;                    /* Texto de color azul */
+    font-weight: 700;                  /* Texto en negrita para que sea claro y fácil de leer */
+    font-size: 1rem;                   /* Tamaño estándar y cómodo para la lectura en pantallas móviles */
+    padding: 10px;                     /* Aumenta el área táctil para que sea facilísimo picarle con el dedo */
+    display: block;                    /* Hace que el enlace se extienda a todo lo ancho de su renglón */
+    text-align: center;                /* Centra el texto del enlace en su propio renglón */
+    border-radius: 6px;                /* Esquinas ligeramente redondeadas para el espacio interactivo */
+}
+
+/* Efecto háptico visual al mantener presionado el dedo en cualquier opción */
+.nav-links a:active {
+    background-color: #000000;         /* Invierte el fondo a negro sólido al recibir el toque */
+    color: #ffffff;                    /* Cambia el texto a blanco para mantener el contraste */
+}
+
+/* ========================================== */
+/* LÓGICA DE INTERFAZ ACTIVADA POR JAVASCRIPT */
+/* ========================================== */
+
+/* 1. Despliega el menú cuando JavaScript le inyecta la clase '.is-active' a la lista */
+.nav-links.is-active {
+    opacity: 1;                        /* Cambia la visibilidad al 100% */
+    transform: translateY(0);          /* Lo baja a su posición original, completando el efecto de caída */
+    pointer-events: auto;              /* Reactiva y permite los clicks en los botones de navegación */
+}
+
+/* 2. Transforma las tres líneas en una 'X' cuando el botón tiene la clase '.is-active' */
+
+/* Línea 1 (Superior): Se desplaza 8px hacia abajo y rota 45 grados en sentido del reloj */
+.hamburger-btn.is-active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+/* Línea 2 (Del medio): Se vuelve completamente invisible y se desvanece */
+.hamburger-btn.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+/* Línea 3 (Inferior): Se desplaza 8px hacia arriba y rota 45 grados en contra del reloj */
+.hamburger-btn.is-active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+
+
+
+
+
+/* ========================================== */
+/* SECCIÓN: PERFIL ESTILO PORTADA */
+/* ========================================== */
+
+/* Caja contenedora principal del perfil */
+.Perfil-facebook {
+    position: relative;        /* Punto de referencia para acomodar elementos adentro */
+    padding: 0 0 20px 0;       /* Relleno: 0 arriba (pega al tope), 20px abajo para dar espacio */
+    margin-top: 10px;          /* Separa la tarjeta del elemento que tenga arriba */
+}
+
+/* Imagen de fondo / Portada */
+#Photo-Portada {
+    width: 100%;               /* Se estira para ocupar todo el ancho disponible */
+    height: 300px;             /* Altura fija ideal para pantallas de celular */
+    object-fit: cover;         /* Recorta la imagen para que llene el espacio sin deformarse */
+    display: block;            /* Quita un espacio en blanco invisible que los navegadores ponen abajo */
+}
+
+/* Bloque contenedor que junta la foto de perfil y los textos */
+.perfil-header-info {
+    display: flex;             /* Activa Flexbox para controlar el acomodo interior */
+    flex-direction: column;    /* Acomoda los elementos en vertical (foto arriba, textos abajo) */
+    align-items: center;       /* Centra la foto y los textos horizontalmente */
+    padding: 0 20px;           /* Colchón de espacio a los lados para que nada pegue al borde */
+    margin-top: -100px;         /* Margen negativo: Jala la foto hacia arriba para encimar la portada */
+    text-align: center;        /* Centra las letras del nombre y profesión */
+}
+
+/* Imagen de Avatar / Perfil */
+#Photo-Perfil {
+    width: 150px;              /* Ancho fijo cuadrado */
+    height: 150px;             /* Alto fijo cuadrado */
+    border-radius: 50%;        /* Al ser un cuadrado perfecto, el 50% lo hace un círculo */
+    object-fit: cover;         /* Centra y recorta la foto dentro del círculo sin aplastarla */
+    border: 3px solid #000000; /* Borde negro grueso para resaltar sobre la portada */
+    background-color: #ffffff; /* Fondo blanco por si la foto tarda en cargar */
+}
+
+/* Caja exclusiva para los textos */
+.Datos-perfil {
+    margin-top: 15px;          /* Separa los textos de la foto circular de arriba */
+    width: 100%;               /* Ocupa todo el ancho del contenedor */
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* Estilo para el Nombre principal */
+.Datos-perfil .Nombre {
+    font-size: 1.5rem;         /* Tamaño de letra grande y jerárquico */
+    font-weight: 700;          /* Letra completamente en negrita */
+    line-height: 1.1;        /* ¡LA CLAVE! Esto junta el apellido de abajo con el primer nombre */
+    color: #000000;            /* Color negro puro */
+    margin-bottom: 5px;        /* Pequeña separación antes de la profesión */
+}
+
+/* Estilo para la Profesión */
+.Datos-perfil .Profesion {
+    font-size: 1.1rem;         /* Tamaño de letra mediano */
+    color: #000000;            /* Gris oscuro para diferenciarlo del nombre */
+    font-weight: 500;          /* Grosor de letra intermedio */
+}
+
+
+
+
+
+
+
+/* ========================================== */
+/* Diseño de acerca de mi */
+/* ========================================== */
+/* 1. El contenedor principal de toda la sección */
+#Acerca-de-Mi {
+    background-color: #e2e8f0; /* El color gris del fondo */
+    padding: 80px 20px;        /* Aumenta los números de arriba y abajo para hacerlo más grande */
+    width: 100vw;   
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 60px;
+    box-sizing: border-box;
+}
+
+/* 2. La tarjeta principal (el cuadro celeste con borde grueso) */
+.Acercademi {
+    border: 3px solid #000;
+    background-color: #b7e3f3;
+    border-radius: 12px;
+    padding: 50px 25px 30px 25px;
+    width: 92%;
+    max-width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* 3. El título "Acerca de Mi" (la etiqueta flotante azul marino) */
+.Acercademi-titulo {
+    position: absolute;
+    top: -20px;
+    right: 30px;
+    background-color: #000080;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    z-index: 10;
+    margin: 0;
+}
+
+/* 4. Estilos para el texto dentro de la tarjeta */
+.Acercademi p {
+    word-break: break-word;      /* Fuerza al texto largo a romperse y bajar de línea */
+    overflow-wrap: break-word;   /* Asegura la compatibilidad con cualquier navegador */
+    max-width: 100%;             /* Evita que el contenido rebase el ancho de la tarjeta */
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #000000;
+    margin: 0;
+    text-align: left;
+}
+
+
+
+
+/* ========================================== */
+/* Tarjetas de beneficios */
+/* ========================================== */
+/* Contenedor de la sección */
+.seccion-beneficios {
+    border-radius: 12px;
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna por defecto para teléfonos */
+    gap: 30px;
+}
+/* Título de la sección */
+.seccion-beneficios h2 {
+    border-radius: 12px;
+    grid-column: 1 / -1;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-align: left;
+    justify-self: start;/* Alineado a la izquierda siempre */
+    margin-bottom: 20px;/* Mantiene el tamaño del sticker ajustado a su texto */
+    background-color: #000080; 
+    color: #ffffff;
+    padding: 10px;
+    position: relative; /* Necesario para posicionar la línea absoluta dentro */
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 20px; /* Espacio entre el título y la primera tarjeta */
+}
+
+/* Tarjeta individual con estilo sticker */
+.tarjeta-beneficio {
+    border-radius: 12px;
+    position: relative;
+    background-color: #ffffff;
+    border: 3px solid #000;
+    padding: 30px 20px 20px 20px;
+    margin-bottom: 0px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+/* Efecto hover divertido al pasar el mouse */
+.tarjeta-beneficio:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000;
+}
+/* Icono flotante superior */
+.icono-flotante {
+    position: absolute;
+    top: -25px;
+    left: 18px;
+    width: 50px;
+    height: 50px;
+    background-color: #56bee3; /* Colorazul */
+    border-radius: 50%; /* Esto convierte el cuadrado en un círculo perfecto */
+    border: none; /* Eliminamos el borde negro de 3px */
+    border: 3px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    z-index: 1;
+}
+
+.icono-flotante img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    /*filter: brightness(0) invert(1); /* Pone el icono blanco si es SVG plano */
+}
+/* Textos dentro de la tarjeta */
+.contenido-tarjeta h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #000;
+}
+.contenido-tarjeta p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================== */
+/* Diseño para las tarjetas de los cursos */
+/* ========================================== */
+
+#cursos{
+    background-color: #e2e8f0;
+}
+.cursos-container {
+    margin: 0 auto;  /* Reduce drásticamente el espacio de arriba y abajo */
+    padding-top: 0;  /* Disminuye el relleno superior para acercar el título */
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr;        /* Una sola columna vertical para celular */
+    row-gap: 35px;                     /* Separación uniforme entre tarjetas */
+}
+
+.curso-card {
+    border-radius: 12px;
+    background-color: #56bee3;         /* Fondo blanco para que contraste limpio */
+    border: 4px solid #000000;         /* El clásico borde grueso Neo-Brutalista */
+    overflow: hidden;                  /* Clave: Corta cualquier cosa que se salga (como el zoom de la imagen) */
+    display: flex;
+    flex-direction: column;            /* Apila la imagen y la info verticalmente */
+}
+
+.curso-image-wrapper {
+    width: 100%;
+    height: 180px;                     /* Altura fija ideal para que luzcan las miniaturas en móvil */
+    overflow: hidden;                  /* Asegura el contenedor del zoom */
+    border-bottom: 4px solid #000000;  /* Línea divisoria Neo-Brutalista antes del texto */
+}
+
+.curso-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                 /* Ajusta la imagen sin distorsionarla */
+    transition: transform 0.3s ease;   /* Hace que el futuro efecto de zoom sea suave */
+}
+
+.curso-info {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    text-align: center;      /* Asegura que el texto fluya al centro */
+    padding: 10px;                     /* Colchón de espacio interno para los textos */
+    background-color:#56bee3;
+}
+
+.curso-titulo {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #000000;
+    margin: 0;                         /* Limpia márgenes por defecto */
+}
+
+/* 1. Efecto en la tarjeta al pasar el cursor */
+.curso-card:hover {
+  /* Desplaza la tarjeta 2px hacia abajo y 2px a la derecha */
+    transform: translate(2px, 2px); 
+  /* Achica la sombra los mismos 2px para simular que se hunde */
+    box-shadow: 4px 4px 0px #000000;  
+    cursor: pointer;
+}
+
+/* 2. Efecto de Zoom en la imagen */
+/* Cuando pases el cursor sobre la tarjeta, la imagen interna va a reaccionar */
+.curso-card:hover .curso-img {
+  transform: scale(1.10); /* Agranda la imagen un 8% */
+}
+
+.Mis-cursos .titulo {
+    display: inline-block;
+    padding: 10px 30px;
+    display: inline-block;    /* Hace que la caja solo mida lo que mide el texto, sin estirarse por toda la pantalla */          
+    background-color: #000080;        
+    color: #ffffff;                    
+    border-radius: 50px; /* Redondea las esquinas al máximo para crear esa forma de píldora o botón gigante */             
+    padding: 10px 30px; /* 10px de espacio arriba/abajo, y 30px a los lados para alargar la cápsula horizontalmente */              
+    font-size: 1.2rem;/* Tamaño de letra grande (1.8 veces el tamaño base) para destacar como título */                    
+    font-weight: 900; /* Grosor máximo en la fuente para que se vea pesada y ruda */                   
+    margin-top: 0;  /* Elimina el margen superior que el navegador le pone por defecto a las etiquetas h2 */                    
+    margin-bottom: 35px;  /* Separación de 35px para que no quede pegado a las tarjetas de los cursos */              
+    margin-left: 5%; /* Como tus tarjetas miden 90% y están centradas, sobra un 5% de cada lado.  Este 5% alinea el título exactamente al mismo nivel izquierdo de las imágenes. */                  
+}
+
+
+
+
+
+
+
+
+
+/* ========================================== */
+/* Diseño para las reseñas */
+/* ========================================== */
+
+#resena, .reseñas {
+  position: relative; /* Define el contenedor principal como referencia */
+  max-width: 1200px;  /* Limita el ancho máximo de toda la sección */
+  margin: 0 auto;  /* Reduce drásticamente el espacio de arriba y abajo */
+  padding-top: 0;  /* Disminuye el relleno superior para acercar el título */
+  text-align: center; /* Centra horizontalmente los elementos inline de la sección */
+}
+
+/* 2. Título flotante alineado a la derecha igual que "Acerca de Mi" */
+.titulo-reseñas {
+  color: #ffffff;         /* Define el color blanco para el texto */
+  border-radius: 12px;    /* Redondea las esquinas de la caja del título */
+  display: inline-block;  /* Ajusta el ancho de la caja exactamente al tamaño del texto */
+  background-color: #120dac; /* Establece el color de fondo azul/morado oscuro */
+  padding: 10px 26px;     /* Relleno interno superior/inferior y lateral */
+  position: relative;     /* Saca al título del flujo normal para poder flotarlo */
+  top: 10px;             /* Desplaza el título hacia arriba para que sobresalga del contenedor */
+  left: auto;                /* Sin restricciones laterales */
+  right: auto;               /* Sin restricciones laterales */            /* Restablece cualquier propiedad de izquierda previa */
+  font-size: 1.2rem;     /* Define el tamaño del texto */
+  font-weight: 900;       /* Hace que la tipografía sea muy gruesa (negrita extrema) */
+  z-index: 10;            /* Eleva la capa del título para que quede por encima de otros elementos */
+  margin: 0 auto 20px auto;  /* Centra la caja horizontalmente y deja espacio hacia la tarjeta */    transform: none;        /* Asegura que no tenga inclinaciones o rotaciones aplicadas */
+}
+
+/* 3. Tarjeta contenedora del Padlet */
+.reviews-container {
+  border-radius: 12px;       /* Redondea las esquinas de la tarjeta principal */
+  background-color: #56bee3; /* Establece el color de fondo celeste de la tarjeta */
+  padding: 15px;             /* Espacio interno entre el borde y el iframe */
+  width: 90%;                /* Ocupa el 90% del ancho disponible de forma responsiva */
+  margin: 0 auto;            /* Centra la tarjeta automáticamente */
+  overflow: hidden;          /* Oculta cualquier contenido que sobresalga de los bordes redondeados */
+}
+
+/* 4. Ajuste del iframe interno */
+.reviews-container iframe {
+  width: 100%;       /* Hace que el Padlet abarque todo el ancho horizontal disponible */
+  height: 420px;     /* Fija una altura uniforme para restringir la vista vertical */
+  display: block;    /* Convierte el iframe en bloque para eliminar espacios fantasma inferiores */
+  border: none;      /* Elimina cualquier borde nativo que traiga el navegador por defecto */
+  border-radius: 8px; /* Redondea sutilmente las esquinas internas del iframe */
+}
+
+
+
+
+
+
+/* ========================================== */
+/* Pie de pagina */
+/* ========================================== */
+
+/* Estilo del contenedor principal del footer */
+#contacto {
+    background-color: #120dac;
+    padding: 10px 20px;
+    margin-top: 0px; /* Espaciado con respecto al resto del contenido */
+    text-align: center;
+}
+
+/* Contenedor interno para alinear elementos verticalmente */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Estilo del copyright: tipografía destacada */
+.footer-content p {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+
+/* ========================================== */
+/* Whatsapp flotante*/
+/* ========================================== */
+.whatsapp-flotante {
+    position: fixed; /* Mantiene el icono fijo en la pantalla */
+    bottom: 20px; /* Separación desde la parte inferior */
+    right: 10px; /* Separación desde la parte derecha */
+    z-index: 1000; /* Asegura que flote por encima de todo */
+    display: flex; /* Facilita el centrado del contenido */
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Tamaño del área contenedora (el icono original ya no tiene padding) */
+    height: 60px;
+    background-color: transparent; /* Fondo transparente, ya no es verde */
+    border: none; /* Sin borde negro */
+    border-radius: 0; /* (ya no aplica) */
+    box-shadow: none; /* Sin sombra dura */
+    padding: 0; /* Sin relleno adicional */
+    transition: transform 0.1s ease; /* Mantenemos la interacción suave */
+}
+
+.whatsapp-flotante img {
+  /* --- AJUSTAMOS EL ICONO DENTRO DEL ÁREA --- */
+    width: 100%; /* El icono ocupa todo el espacio de los 50x50px */
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.3)); /* OPCIONAL: Un ligero 'halo' de sombra al icono para que no se pierda con fondos claros, manteniendo un toque del estilo anterior pero mucho más ligero. Puedes quitarlo si prefieres 0% de sombra. */
+}
+
+
+
+
+/* ========================================== */
+/*  animacion de aparicion*/
+/* ========================================== */
+
+.elemento-animado {
+    opacity: 0; /* Oculto por defecto */
+    transform: translateY(30px); /* Desplazado ligeramente hacia abajo */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición fluida */
+}
+
+.elemento-animado.visible {
+    opacity: 1; /* Totalmente visible */
+    transform: translateY(0); /* Vuelve a su posición original */
+}
+
+
+
+
+
+/* ========================================== */
+/* Codigo escalable con media*/
+/* ========================================== */
+
+/* ========================================== */
+/* Codigo para el escalado del header*/
+/* ========================================== */
+
+@media (min-width: 768px) {
+    /* 1. Ocultamos el botón de hamburguesa */
+    .hamburger-btn {
+        display: none !important;
+    }
+
+    /* 2. Transformamos el menú desplegable en una barra de navegación horizontal */
+    .nav-links {
+        position: static !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        gap: 20px;
+        background-color: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        width: auto !important;
+        padding: 0 !important;
+    }
+
+    /* 3. Ajustamos el estilo de los enlaces para la barra horizontal */
+    .nav-links a {
+        color: #000;
+        padding: 6px 12px;
+        border: 2px solid #000000;
+        border-radius: 6px;
+        background-color: #ffffff;
+        box-shadow: 2px 2px 0px #000000;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    /* Pequeño toque Neo-Brutalista al pasar el mouse por los enlaces en desktop */
+    .nav-links a:hover {
+        transform: translate(-2px, -2px);
+    }
+    }
+
+/* ========================================== */
+/* Codigo escalado para el perfil*/
+/* ========================================== */
+
+@media (min-width: 768px) {
+    /* 1. Forzamos que la caja contenedora general abarque el 100% real sin restricciones */
+    .Perfil-facebook {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+   /* 1. Hacemos la portada más imponente y estirada de borde a borde */
+    #Photo-Portada {
+        width: 100% !important;
+        height: 420px;
+        object-fit: cover; /* Evita que la imagen se deforme al estirarse */
+    }
+
+    /* 2. Cambiamos el contenedor del perfil a una fila horizontal alineada a la izquierda */
+    .perfil-header-info {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
+    gap: 30px !important;
+  /* --- AUMENTA ESTE VALOR --- */
+     margin-top: -100px !important; /* Prueba con -130px o -150px si es necesario */
+    padding: 0px 50px 30px 50px !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+    /* 3. Tamaño perfecto para el avatar en modo escritorio */
+    #Photo-Perfil {
+        width: 260px;
+        height: 260px;
+        border: 4px solid #000000;
+        margin: 0 !important; /* Limpiamos cualquier margen heredado */
+    }
+
+    /* 4. Aseguramos que la caja de textos respete la alineación izquierda */
+    .Datos-perfil {
+        align-items: flex-start !important;
+        margin-top: 15 !important;
+        
+    }
+
+    .Datos-perfil .Nombre {
+        font-size: 3rem !important;
+        text-align: left;
+    }
+
+    .Datos-perfil .Profesion {
+        font-size: 2rem !important;
+        text-align: left;
+    }
+    }
+
+/* ========================================== */
+/* Codigo escalado para acerca de mi*/
+/* ========================================== */
+
+@media (min-width: 768px) {
+    #Acerca-de-Mi {
+        padding: 100px 40px; /* Franja gris más alta y ancha en PC */
+        width: 100% !important;             /* Fuerza a que la sección ocupe todo el ancho disponible horizontalmente */
+        max-width: 100% !important;         /* Elimina cualquier límite de ancho máximo para que se expanda por completo */
+        margin-left: 0 !important;          /* Quita el margen izquierdo para evitar espacios vacíos laterales */
+        margin-right: 0 !important;         /* Quita el margen derecho */
+
+    }
+
+    .Acercademi {
+        max-width: 1100px;  /* Hacemos la tarjeta más amplia */
+        padding: 60px 50px;
+    }
+
+    .Acercademi-titulo {
+        font-size: 1.6rem;   /* Letra del título más grande */
+        padding: 12px 24px;
+        right: 40px;
+    }
+
+    .Acercademi p {
+        font-size: 1.25rem;  /* Letra del texto principal más grande y legible */
+        line-height: 1.7;
+    }
+}
+
+
+/* ========================================== */
+/* Codigo escalado para los beneficios*/
+/* ========================================== */
+@media (min-width: 768px) {
+    .seccion-beneficios {
+    grid-template-columns: repeat(2, 1fr); /* Exactamente la cuadrícula 2x2 */
+    }
+    .seccion-beneficios h2 {
+    font-size: 1.6rem; /* Cambia este valor a 1.8rem si lo quieres todavía más grande */
+    }
+}
+
+/* ========================================== */
+/* Codigo escalado para los cursos*/
+/* ========================================== */
+@media (min-width: 768px) {
+
+        .Mis-cursos {
+            padding-top: 50px !important;
+            margin-top: 50px !important;
+            width: 100% !important;             /* Fuerza a que la sección ocupe todo el ancho disponible horizontalmente */
+            max-width: 100% !important;         /* Elimina cualquier límite de ancho máximo para que se expanda por completo */
+            margin-left: 0 !important;          /* Quita el margen izquierdo para evitar espacios vacíos laterales */
+            margin-right: 0 !important;         /* Quita el margen derecho */
+            padding-left: 50px !important;      /* Agrega un respiro o espacio interior izquierdo de 50px para que las tarjetas no peguen al borde */
+            padding-right: 50px !important;     /* Agrega un respiro interior derecho de 50px */
+            box-sizing: border-box !important;  /* Incluye los paddings dentro del cálculo total del ancho para evitar que se desborde la pantalla */
+        
+        }
+        .cursos-container {
+            max-width: 100% !important;         /* Asegura que el contenedor interno de las tarjetas aproveche todo el ancho */
+            width: 100% !important;             /* Ancho total del 100% */
+            grid-template-columns: repeat(3, 1fr) !important; /* Divide la cuadrícula exactamente en 3 columnas iguales (1 fracción cada una) */
+            gap: 40px !important;               /* Establece una separación uniforme de 40px tanto entre filas como entre columnas */
+            margin: 0 !important;               /* Elimina márgenes externos innecesarios */
+            padding: 0 20px !important;         /* Espaciado interno horizontal extra para las tarjetas */
+            box-sizing: border-box !important;  /* Controla correctamente las dimensiones de la caja */
+        }
+
+        /* Le damos un poco más de altura a las imágenes para que no se vean chaparritas al encogerse a lo ancho */
+        .curso-image-wrapper {
+            height: 220px !important; 
+        }
+        
+        /* Ajustamos ligeramente el título de las tarjetas para pantallas grandes */
+        .curso-titulo {
+            font-size: 1.6rem !important;
+            padding: 15px 10px !important;
+        }
+        .titulo{
+            font-size: 1.8rem !important;      /* Aumenta el tamaño del texto considerablemente */
+            padding: 15px 40px !important;     /* Expande la pildorita para que guarde proporción con la letra grande */
+            margin-left: 20px !important;      /* Alinea el margen con el nuevo diseño fluido */
+            margin-bottom: 45px !important;    /* Separa un poco más el título de las tarjetas de cursos */
+        }
+    } 
+    
+/* ========================================== */
+/* Codigo escalado para las reseñas*/
+/* ========================================== */
+
+@media (min-width: 768px) {
+    #resena, .reseñas {
+        position: relative;          /* Mantiene el contenedor como referencia para el título absoluto */
+        width: 100% !important;      /* Ocupa todo el ancho disponible en escritorio */
+        max-width: 1200px !important;/* Limita el ancho máximo general */
+        margin: 20px auto !important;/* Centra la sección globalmente */
+        padding-top: 40px !important;/* Deja espacio arriba para que el título flote sin estorbar */
+        box-sizing: border-box !important;
+    }
+
+  /* El título viaja a la izquierda exclusivamente en pantallas grandes */
+    #resena .titulo-reseñas, .reseñas .titulo-reseñas {
+        font-size: 1.5rem !important;      /* Aumenta el tamaño del texto considerablemente */
+        position: absolute !important; /* Saca al título del flujo para flotarlo */
+        top: -5px !important;         /* Lo posiciona flotando en la parte superior */
+        left: 100px !important;         /* Lo ancla hacia la esquina izquierda */
+        right: auto !important;        /* Quita cualquier restricción derecha */
+        margin: 0 !important;          /* Elimina márgenes de centrado previos */
+    }
+
+    .reviews-container {
+        width: 90% !important;       /* Ancho de la tarjeta de reseñas en escritorio */
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0 auto !important;   /* Centra la tarjeta de reseñas debajo del título flotante */
+    }
+}
+
+
+/* ========================================== */
+/* Codigo escalado para el pie de pagina*/
+/* ========================================== */
+
+    @media (min-width: 768px) {
+    #contacto {
+        padding: 20px 50px !important;             /* Empareja los márgenes laterales con el resto de la página */
+    }
+
+    .footer-content {
+        flex-direction: row !important;            /* Cambia la distribución a una sola línea horizontal (fila) */
+        justify-content: space-between !important; /* Manda el texto al extremo izquierdo y el botón al extremo derecho */
+        align-items: center !important;            /* Alinea verticalmente al centro ambos elementos */
+        width: 100% !important;                    /* Asegura que abarque todo el ancho disponible */
+    }
+    .copy{
+
+        font-size: 1.2rem !important;      /* Aumenta el tamaño del texto considerablemente */
+        
+}
+
+    }

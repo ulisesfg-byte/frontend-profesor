@@ -1,0 +1,188 @@
+/* ========================================== */
+/* Diseño para el header de los cursos */
+/* ========================================== */
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #120dac; /* Fondo transparente  */
+    padding: 15px 20px; /* Agrega espacio de relleno interno arriba/abajo y a los lados */
+    width: 100%; /* Hace que el header ocupe todo el ancho disponible de la pantalla */
+} /* Cierre de los estilos del header */
+
+.logo-estilo {
+    height: 40px; /* Ajusta la altura a tu gusto */
+    width: auto;
+}
+
+/* Estilos para el enlace que contiene los textos apilados */
+.enlace-header {
+    display: flex;          
+    flex-direction: column; /* Cambia la dirección a columna: coloca el nombre arriba y el subtítulo abajo */
+    text-decoration: none;   /* Elimina la línea subrayada típica que los navegadores ponen en los enlaces */
+    color: #ffffff;          /* Cambia el color del texto a blanco puro */
+    background: transparent; /* Asegura que no tenga ningún color de fondo tipo botón */
+    border: none;            /* Elimina cualquier borde que pudiera tener */
+    box-shadow: none;        /* Elimina sombras flotantes para que no parezca un botón tridimensional */
+    padding: 0;              /* Elimina rellenos internos para que el área de clic sea exacta */
+}
+
+/* Estilos específicos para el texto principal del nombre */
+.enlace-header .nombre-principal {
+    font-size: 1.4rem;      /* Define un tamaño de letra grande y legible */
+    font-weight: 700;       /* Aplica un grosor máximo (muy negrita) para darle impacto visual */
+}
+
+/* Estilos específicos para el subtítulo secundario */
+.enlace-header .subtitle {
+    font-family: sans-serif; /* Define la familia tipográfica base para el subtítulo */
+    font-size: 0.85rem;      /* Hace que el texto sea más pequeño que el nombre principal */
+    font-weight: 400;        /* Usa un grosor de letra normal (no negrita) */
+    opacity: 0.9;            /* Aplica una ligera transparencia para suavizarlo visualmente */
+}
+
+/* Efecto visual al pasar el cursor por encima del bloque de texto */
+.enlace-header:hover {
+    opacity: 0.5;           /* Baja sutilmente la opacidad global para indicar que es interactivo */
+}
+
+/* ========================================== */
+/* tarjeta del curso*/
+/* ========================================== */
+
+.seccion-detalle-curso {
+  padding: 60px 20px; /* Espaciado interno superior/inferior y lateral */
+  background-color: transparent;
+  display: flex; /* Activa el modelo de caja flexible */
+  justify-content: center; /* Centra la tarjeta horizontalmente */
+  align-items: center; /* Centra la tarjeta verticalmente */
+}
+
+.tarjeta-curso-individual {
+  position: relative; /* Posicionamiento relativo para elementos internos */
+  background-color: #ffffff; /* Fondo blanco para la tarjeta */
+  border: 4px solid #000; /* Borde negro grueso característico del estilo */
+  width: 100%; /* Ancho completo adaptable */
+  max-width: 600px; /* Ancho máximo para que no se estire demasiado */
+  padding: 40px 30px; /* Margen interno para separar el contenido de los bordes */
+  display: flex; /* Flexbox para apilar los elementos internos */
+  flex-direction: column; /* Dirección vertical en columna */
+  align-items: flex-start; /* Alinea los elementos hijos a la izquierda */
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.etiqueta-curso-superior {
+  font-size: 0.85rem; /* Tamaño de fuente pequeño */
+  font-weight: 800; /* Texto muy negrita */
+  text-transform: uppercase; /* Convierte el texto a mayúsculas */
+  background-color: #000080; /* Color de fondo azul corporativo */
+  color: #fff; /* Color del texto en blanco */
+  border: 2px solid #000; /* Borde negro delgado para la etiqueta */
+  padding: 4px 12px; /* Relleno interno compacto */
+  margin-bottom: 15px; /* Separación respecto al título del curso */
+  box-shadow: 3px 3px 0px #000; /* Sombra sólida pequeña para efecto sticker */
+}
+
+.nombre-curso {
+  font-size: 2.2rem; /* Tamaño de fuente grande e impactante */
+  font-weight: 900; /* Grosor máximo de la fuente */
+  color: #000; /* Color negro sólido */
+  margin-bottom: 20px; /* Espacio inferior antes del precio */
+  letter-spacing: -1px; /* Letras ligeramente más juntas para estilo moderno */
+}
+
+.contenedor-precio {
+  background-color: #e8f0fe; /* Fondo azul muy claro para resaltar */
+  border: 3px solid #000; /* Borde negro sólido */
+  width: 100%; /* Ocupa todo el ancho disponible de la tarjeta */
+  padding: 15px 20px; /* Espaciado interno cómodo */
+  margin-bottom: 25px; /* Separación inferior antes de la info general */
+  box-shadow: 4px 4px 0px #000; /* Sombra sólida característica */
+  display: flex; /* Flexbox para alinear moneda, monto y periodicidad */
+  align-items: baseline; /* Alinea los textos respecto a su línea base inferior */
+  gap: 5px; /* Espacio automático entre los elementos internos */
+}
+
+.moneda {
+  font-size: 1.5rem; /* Tamaño mediano */
+  font-weight: 900; /* Máxima negrita */
+}
+
+.monto {
+  font-size: 2.5rem; /* Tamaño grande para que destaque mucho */
+  font-weight: 900; /* Máxima negrita */
+  color: #275aac; /* Color azul corporativo para el número */
+}
+
+.periodicidad {
+  font-size: 1rem; /* Tamaño de fuente estándar */
+  font-weight: 700; /* Texto en negrita */
+  color: #333; /* Color gris oscuro */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  margin-left: auto; /* Manda la palabra mensual a la derecha */
+}
+
+.bloque-info-general {
+  background-color: #fff9db; /* Fondo amarillo tipo nota adhesiva */
+  border: 3px solid #000; /* Borde negro sólido */
+  padding: 20px; /* Relleno interno general */
+  width: 100%; /* Ancho completo de la tarjeta */
+  margin-bottom: 30px; /* Separación inferior antes del botón */
+  box-shadow: 4px 4px 0px #000; /* Sombra sólida lateral e inferior */
+}
+
+.bloque-info-general h3 {
+  font-size: 1.1rem; /* Tamaño de letra ligeramente mayor al cuerpo */
+  font-weight: 900; /* Máxima negrita */
+  text-transform: uppercase; /* Mayúsculas */
+  margin-bottom: 10px; /* Espacio debajo del subtítulo */
+  border-bottom: 2px solid #000; /* Línea divisoria negra inferior */
+  padding-bottom: 5px; /* Espacio entre el texto y la línea divisoria */
+}
+
+.bloque-info-general p {
+  font-size: 0.95rem; /* Tamaño de letra legible */
+  font-weight: 600; /* Semi-negrita para mayor claridad */
+  line-height: 1.5; /* Altura de línea para facilitar la lectura */
+  margin-bottom: 15px; /* Espacio inferior antes de los detalles */
+}
+
+.detalles-rapidos {
+  list-style: none; /* Elimina los puntos o viñetas por defecto de la lista */
+  padding: 0; /* Elimina el relleno interno por defecto */
+  margin: 0; /* Elimina los márgenes por defecto */
+}
+
+.detalles-rapidos li {
+  font-size: 0.9rem; /* Tamaño de texto compacto */
+  font-weight: 500; /* Peso de fuente intermedio */
+  padding: 6px 0; /* Espaciado vertical arriba y abajo de cada elemento */
+  border-top: 1px dashed #000; /* Línea punteada superior para separar elementos */
+}
+
+.btn-inscribir {
+  display: inline-block; /* Permite aplicar anchos, altos y márgenes de bloque */
+  background-color: #000080; /* Fondo amarillo brillante muy llamativo */
+  color: #ffffff; /* Color del texto en negro */
+  font-size: 1.1rem; /* Tamaño de texto destacado */
+  font-weight: 900; /* Máxima negrita */
+  text-decoration: none; /* Elimina el subrayado por defecto de los enlaces */
+  padding: 15px 30px; /* Área de clic amplia y cómoda */
+  border: 3px solid #000; /* Borde negro sólido grueso */
+  box-shadow: 5px 5px 0px #000; /* Sombra sólida pronunciada de botón */
+  transition: transform 0.1s ease, box-shadow 0.1s ease; /* Transición suave para los efectos de interacción */
+  width: 100%; /* Ancho completo de la tarjeta */
+  text-align: center; /* Centra el texto del botón horizontalmente */
+}
+
+.btn-inscribir:hover {
+  transform: translate(-2px, -2px); /* Mueve el botón hacia arriba y la izquierda (efecto relieve) */
+  box-shadow: 7px 7px 0px #000; /* Agranda la sombra para dar sensación de elevación */
+  background-color: #0a5fe7; /* Cambia ligeramente a un tono amarillo más vivo */
+}
+
+.btn-inscribir:active {
+  transform: translate(2px, 2px); /* Desplaza el botón hacia abajo y la derecha (simula hundirse) */
+  box-shadow: 3px 3px 0px #000; /* Reduce la sombra para dar efecto de presión física */
+}
