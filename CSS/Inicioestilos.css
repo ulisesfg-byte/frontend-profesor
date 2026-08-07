@@ -236,10 +236,9 @@ header .TituloPag {
 
 .Acercademi:hover {
   /* Desplaza la tarjeta 2px hacia abajo y 2px a la derecha */
-    transform: translate(2px, 2px); 
+    transform: translate(2px, 2px);
   /* Achica la sombra los mismos 2px para simular que se hunde */
-    box-shadow: 4px 4px 0px #000000;  
-    cursor: pointer;
+    box-shadow: 8px 8px 0px #000; 
 }
 
 
