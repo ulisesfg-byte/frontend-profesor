@@ -183,8 +183,8 @@ header .TituloPag {
 
 /* Imagen de Avatar / Perfil */
 #Photo-Perfil {
-    width: 150px;              /* Ancho fijo cuadrado */
-    height: 150px;             /* Alto fijo cuadrado */
+    width: 200px;              /* Ancho fijo cuadrado */
+    height: 200px;             /* Alto fijo cuadrado */
     border-radius: 50%;        /* Al ser un cuadrado perfecto, el 50% lo hace un círculo */
     object-fit: cover;         /* Centra y recorta la foto dentro del círculo sin aplastarla */  
     background-color: transparent; /* Asegura fondo transparente */}
@@ -281,6 +281,7 @@ header .TituloPag {
     margin: 0;
     text-align: left;
 }
+
 
 
 
