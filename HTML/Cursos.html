@@ -33,13 +33,21 @@
 
     
         <!-- Nombre del curso -->
-            <h1 class="curso-titulo">l</h1>
+            <h1 class="curso-titulo"></h1>
     
         <!-- Bloque de Precio -->
-        <div class="contenedor-precio">
-            <span class="moneda" id="curso-moneda">$</span>
-            <span class="monto" id="curso-monto"></span>
-            <span class="periodicidad" id="curso-periodicidad">por hora</span>
+        <div class="contenedor-precio" id="contenedor-precio">
+            <span class="precio-actual">
+                <!-- Agrupamos solo los números arriba -->
+                <span class="grupo-numeros">
+                    <span class="moneda" id="curso-moneda">$</span>
+                    <span class="monto" id="curso-monto"></span>
+                </span>
+                <!-- La periodicidad se queda afuera para bajarla -->
+                <span class="periodicidad" id="curso-periodicidad"></span>
+            </span>
+
+            <del class="precio-original" id="curso-precio-original"></del>
         </div>
 
         <!-- Información general / Descripción -->

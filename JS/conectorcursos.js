@@ -94,11 +94,26 @@ async function cargarDetalleCurso() {
         const elNombre = document.querySelector('.curso-titulo');
         if (elNombre) elNombre.innerText = curso.nombrecurso || 'Sin título';
 
+
+
+
+
         const elMonto = document.getElementById('curso-monto');
         if (elMonto) elMonto.innerText = curso.costo || '0';
 
+        console.log("El valor exacto de costotapado es:", curso.costotapado);
+
+        const elMontotapado = document.getElementById('curso-precio-original');
+        if (elMontotapado) {
+            elMontotapado.innerText = curso.costotapado || '0';}
+
+
+
+
+
         try {
-        const respuestaInicio = await fetch('https://backend-profesor.onrender.com/api/inicio?populate=*');        const resultadoInicio = await respuestaInicio.json();
+        const respuestaInicio = await fetch('https://backend-profesor.onrender.com/api/inicio?populate=*');       
+        const resultadoInicio = await respuestaInicio.json();
         const datosInicio = resultadoInicio.data;
 
         const logoElemento = document.getElementById('logo-header');
@@ -112,7 +127,6 @@ async function cargarDetalleCurso() {
         const elDescripcion = document.getElementById('curso-descripcion');
         if (elDescripcion) elDescripcion.innerText = curso.descripciondelcurso || 'Sin descripción disponible.';
 
-        // Carga dinámica de los detalles con rayos (⚡)
         const listaBeneficios = document.getElementById('curso-beneficios');
         if (listaBeneficios && curso.detalles && Array.isArray(curso.detalles)) {
             listaBeneficios.innerHTML = ''; // Limpiamos los elementos estáticos
@@ -123,7 +137,7 @@ async function cargarDetalleCurso() {
 
                 if (clave || descripcion) {
                     const li = document.createElement('li');
-                    li.innerHTML = `⚡ <strong>${clave}:</strong> ${descripcion}`;
+                    li.innerHTML = `- <strong>${clave}:</strong> ${descripcion}`;
                     listaBeneficios.appendChild(li);
                 }
             });

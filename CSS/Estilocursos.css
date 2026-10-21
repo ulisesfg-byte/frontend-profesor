@@ -93,19 +93,39 @@ header {
 }
 
 .contenedor-precio {
-  background-color: #e8f0fe; /* Fondo azul muy claro para resaltar */
-  border: 3px solid #000; /* Borde negro sólido */
-  width: 100%; /* Ocupa todo el ancho disponible de la tarjeta */
-  padding: 15px 20px; /* Espaciado interno cómodo */
-  margin-bottom: 25px; /* Separación inferior antes de la info general */
-  box-shadow: 4px 4px 0px #000; /* Sombra sólida característica */
-  display: flex; /* Flexbox para alinear moneda, monto y periodicidad */
-  align-items: baseline; /* Alinea los textos respecto a su línea base inferior */
-  gap: 5px; /* Espacio automático entre los elementos internos */
+  background-color: #e8f0fe;
+  border: 3px solid #000;
+  width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  box-shadow: 4px 4px 0px #000;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;       /* Permite que baje la periodicidad */
+  justify-content: space-between; /* Manda los números a la izquierda y el 250 a la derecha */
+}
+
+.grupo-numeros {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+
+.precio-original {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #7a7a7a;
+  text-decoration: line-through;
+  margin-left: 0;
+  width: auto;           /* Evita que ocupe todo el ancho y se baje */
+  
 }
 
 .moneda {
-  font-size: 1.5rem; /* Tamaño mediano */
+  font-size: 1.8rem; /* Tamaño mediano */
   font-weight: 900; /* Máxima negrita */
 }
 
@@ -116,11 +136,13 @@ header {
 }
 
 .periodicidad {
-  font-size: 1rem; /* Tamaño de fuente estándar */
-  font-weight: 700; /* Texto en negrita */
-  color: #333; /* Color gris oscuro */
-  text-transform: uppercase; /* Texto en mayúsculas */
-  margin-left: auto; /* Manda la palabra mensual a la derecha */
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+  width: 100%;           /* <-- Esto obliga al texto a irse abajo de los números */
+  margin-top: 2px;
+
 }
 
 .bloque-info-general {
@@ -185,4 +207,10 @@ header {
 .btn-inscribir:active {
   transform: translate(2px, 2px); /* Desplaza el botón hacia abajo y la derecha (simula hundirse) */
   box-shadow: 3px 3px 0px #000; /* Reduce la sombra para dar efecto de presión física */
+}
+
+@media (min-width: 768px) {
+  .precio-original {
+    margin-left: auto; /* Esto lo manda a la esquina derecha en grande */
+  }
 }
