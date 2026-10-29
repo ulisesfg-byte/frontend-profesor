@@ -29,27 +29,41 @@
 
     <section class="seccion-detalle-curso">
         <div class="tarjeta-curso-individual">
-            <span class="etiqueta-curso-superior" id="curso-tipo"></span>
 
     
-        <!-- Nombre del curso -->
-            <h1 class="curso-titulo"></h1>
+
     
         <!-- Bloque de Precio -->
         <div class="contenedor-precio" id="contenedor-precio">
-            <span class="precio-actual">
+            <div class="contendor-izquierda">
+                <!-- Nombre del curso -->
+                <h1 class="curso-titulo"></h1>
+                <!-- Tipo de curso -->
+                <span class="etiqueta-curso-superior" id="curso-tipo"></span>
+            </div>
+            
+        
+        
+            <div class="precio-actual">
                 <!-- Agrupamos solo los números arriba -->
-                <span class="grupo-numeros">
-                    <span class="moneda" id="curso-moneda">$</span>
+                <span class="grupo-precios">
                     <span class="monto" id="curso-monto"></span>
                 </span>
-                <!-- La periodicidad se queda afuera para bajarla -->
-                <span class="periodicidad" id="curso-periodicidad"></span>
-            </span>
+                <!-- Precio -->
+                <span class="precio-original" id="curso-precio-original"></span>
+            </div>
 
-            <del class="precio-original" id="curso-precio-original"></del>
+            
         </div>
 
+
+
+
+
+
+
+
+        
         <!-- Información general / Descripción -->
         <div class="bloque-info-general">
             <h3>Información general</h3>

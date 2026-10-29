@@ -6,7 +6,6 @@
 }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;/* Tipografias*/
-    background-color: #ffffff; /* Color del fondo */
     color: #000000; /* Color de la letra */
     line-height: 1.6; /* Separacion entre renglones */
 }

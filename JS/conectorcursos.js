@@ -2,7 +2,8 @@ async function cargarCursosInicio() {
         const seccionCursos = document.getElementById('cursos');
         if (!seccionCursos) return; // Si no existe la sección 'cursos' aquí, se sale sin error.
     try {
-        const respuesta = await fetch('https://backend-profesor.onrender.com/api/cursosadds?populate=imagencurso');
+     
+        const respuesta = await fetch('https://backend-profesor.onrender.com/api/cursosadds?populate=*');
         const resultado = await respuesta.json();
         const listaDeCursos = resultado.data; 
 
@@ -14,7 +15,7 @@ async function cargarCursosInicio() {
         contenedor.innerHTML = '';
 
         listaDeCursos.forEach(curso => {
-            // 1. Usamos el nombre exacto que reveló tu consola (nombrerecurso)
+            // 1. Usamos el nombre exacto que reveló la consola (nombrerecurso)
             const nombre = curso.nombrecurso || 'Curso sin título';
             // 2. Extraemos la URL de la imagen
             const imagenUrl = curso.imagencurso?.url ? curso.imagencurso.url : '';
@@ -24,6 +25,29 @@ async function cargarCursosInicio() {
             // 3. Le quitamos 'elemento-animado' para evitar que se queden invisibles
             tarjeta.classList.add('curso-card', 'elemento-animado');
 
+
+
+
+
+
+          // Verificamos si la URL actual tiene un ID de curso (lo que indica que estás en la página de detalles)
+const urlParams = new URLSearchParams(window.location.search);
+const idEnUrl = urlParams.get('id');
+const fondoUrl = curso.fondocurso && curso.fondocurso.url ? curso.fondocurso.url : '';
+
+console.log("¿Hay ID en la URL?:", idEnUrl);
+console.log("¿Hay URL de fondo?:", fondoUrl);
+
+if (idEnUrl && fondoUrl) {
+    console.log("¡Condición cumplida! Aplicando fondo...");
+    document.body.style.setProperty('background-image', 'url(' + fondoUrl + ')', 'important');
+    document.body.style.setProperty('background-size', 'cover', 'important');
+    document.body.style.setProperty('background-position', 'center', 'important');
+    document.body.style.setProperty('background-repeat', 'no-repeat', 'important');
+    document.body.style.setProperty('background-attachment', 'fixed', 'important');
+} else {
+    console.log("La condición falló: o falta el ID en la URL o falta la URL del fondo.");
+}
             tarjeta.innerHTML = `
                 <div class="curso-image-wrapper">
                     <img src="${imagenUrl}" alt="Miniatura de ${nombre}" class="curso-img">
@@ -54,6 +78,13 @@ async function cargarCursosInicio() {
         console.error('Error al cargar los cursos:', error);
     }
 }
+
+
+
+
+
+
+
 
 // 2. Lógica para la página de DETALLES (Rellena tu HTML con los datos de Strapi)
 async function cargarDetalleCurso() {
@@ -94,20 +125,18 @@ async function cargarDetalleCurso() {
         const elNombre = document.querySelector('.curso-titulo');
         if (elNombre) elNombre.innerText = curso.nombrecurso || 'Sin título';
 
-
-
-
-
         const elMonto = document.getElementById('curso-monto');
         if (elMonto) elMonto.innerText = curso.costo || '0';
 
-        console.log("El valor exacto de costotapado es:", curso.costotapado);
+
+
 
         const elMontotapado = document.getElementById('curso-precio-original');
         if (elMontotapado) {
-            elMontotapado.innerText = curso.costotapado || '0';}
-
-
+            const textoStrapi = curso.costotapado || '';
+            const textoFormateado = textoStrapi.replace(/(:\s*)(\$.*)/, '$1<span class="precio-original">$2</span>');         
+            elMontotapado.innerHTML = textoFormateado;
+        }
 
 
 

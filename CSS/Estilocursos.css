@@ -1,6 +1,12 @@
 /* ========================================== */
 /* Diseño para el header de los cursos */
 /* ========================================== */
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 
 header {
     display: flex;
@@ -14,6 +20,14 @@ header {
 .logo-estilo {
     height: 40px; /* Ajusta la altura a tu gusto */
     width: auto;
+}
+
+.fondo-curso {
+  min-height: 250px;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Estilos para el enlace que contiene los textos apilados */
@@ -72,6 +86,34 @@ header {
   text-align: left; /* Alinea el texto a la izquierda */
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+.contenedor-precio {
+  background-color: #e8f0fe;
+  border: 3px solid #000;
+  width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  box-shadow: 4px 4px 0px #000;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;       /* Permite que baje la periodicidad */
+  justify-content: space-between; /* Manda los números a la izquierda y el 250 a la derecha */
+}
 .etiqueta-curso-superior {
   font-size: 0.85rem; /* Tamaño de fuente pequeño */
   font-weight: 800; /* Texto muy negrita */
@@ -92,41 +134,24 @@ header {
   letter-spacing: -1px; /* Letras ligeramente más juntas para estilo moderno */
 }
 
-.contenedor-precio {
-  background-color: #e8f0fe;
-  border: 3px solid #000;
-  width: 100%;
-  padding: 15px 20px;
-  margin-bottom: 25px;
-  box-shadow: 4px 4px 0px #000;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  display: flex;
-  flex-wrap: wrap;       /* Permite que baje la periodicidad */
-  justify-content: space-between; /* Manda los números a la izquierda y el 250 a la derecha */
-}
-
-.grupo-numeros {
+.grupo-precios {
   display: flex;
   align-items: baseline;
   gap: 2px;
 }
 
-
 .precio-original {
-  font-size: 2.5rem;
+  display: inline-block;
+  text-decoration: line-through;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #7a7a7a;
   text-decoration: line-through;
-  margin-left: 0;
-  width: auto;           /* Evita que ocupe todo el ancho y se baje */
+  margin-left: 5;
   
 }
-
-.moneda {
-  font-size: 1.8rem; /* Tamaño mediano */
-  font-weight: 900; /* Máxima negrita */
+#curso-precio-original {
+  text-decoration: none 
 }
 
 .monto {
@@ -135,15 +160,17 @@ header {
   color: #275aac; /* Color azul corporativo para el número */
 }
 
-.periodicidad {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #333;
-  text-transform: uppercase;
-  width: 100%;           /* <-- Esto obliga al texto a irse abajo de los números */
-  margin-top: 2px;
 
-}
+
+
+
+
+
+
+
+
+
+
 
 .bloque-info-general {
   background-color: #fff9db; /* Fondo amarillo tipo nota adhesiva */
@@ -209,8 +236,58 @@ header {
   box-shadow: 3px 3px 0px #000; /* Reduce la sombra para dar efecto de presión física */
 }
 
+
+/* --- DISEÑO PARA PANTALLAS GRANDES (ESCRITORIO) --- */
 @media (min-width: 768px) {
-  .precio-original {
-    margin-left: auto; /* Esto lo manda a la esquina derecha en grande */
+  div#contenedor-precio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    min-height: 160px;
+    padding: 20px 25px;
+  }
+
+  /* Ahora usamos div. en lugar de span. */
+  div.contendor-izquierda {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end; /* Mantiene título y botón abajo */
+    flex: 1;
+  }
+
+  h1.curso-titulo {
+    text-align: left;
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    white-space: normal;
+    word-break: break-word;
+    max-width: 90%;
+  }
+
+  /* Ahora usamos div. en lugar de span. */
+  div.precio-actual {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    justify-content: flex-start; /* Mantiene los precios arriba */
+    flex: 1;
+    align-self: flex-start;
+  }
+
+  #curso-precio-original {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  span.grupo-precios {
+    margin: 0;
+    line-height: 1;
   }
 }
+
+
+
+

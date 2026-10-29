@@ -358,7 +358,7 @@ header .TituloPag {
 }
 /* Textos dentro de la tarjeta */
 .contenido-tarjeta h3 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 10px;
     color: #000;
@@ -790,7 +790,7 @@ header .TituloPag {
     }
 
     .Acercademi p {
-        font-size: 1.25rem;  /* Letra del texto principal más grande y legible */
+        font-size: 1.4rem;  /* Letra del texto principal más grande y legible */
         line-height: 1.7;
     }
 }
@@ -804,7 +804,12 @@ header .TituloPag {
     grid-template-columns: repeat(2, 1fr); /* Exactamente la cuadrícula 2x2 */
     }
     .seccion-beneficios h2 {
-    font-size: 1.6rem; /* Cambia este valor a 1.8rem si lo quieres todavía más grande */
+    font-size: 1.8rem; /* Cambia este valor a 1.8rem si lo quieres todavía más grande */
+    }
+    .seccion-beneficios p{
+    white-space: pre-line;
+    font-size: 1.2rem;  /* Letra del texto principal más grande y legible */
+
     }
 }
 
