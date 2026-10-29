@@ -286,6 +286,9 @@ header {
     margin: 0;
     line-height: 1;
   }
+  .monto{
+    font-size: 3.2rem;
+  }
 }
 
 
