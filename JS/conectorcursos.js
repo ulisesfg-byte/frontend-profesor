@@ -31,23 +31,7 @@ async function cargarCursosInicio() {
 
 
           // Verificamos si la URL actual tiene un ID de curso (lo que indica que estás en la página de detalles)
-const urlParams = new URLSearchParams(window.location.search);
-const idEnUrl = urlParams.get('id');
-const fondoUrl = curso.fondocurso && curso.fondocurso.url ? curso.fondocurso.url : '';
 
-console.log("¿Hay ID en la URL?:", idEnUrl);
-console.log("¿Hay URL de fondo?:", fondoUrl);
-
-if (idEnUrl && fondoUrl) {
-    console.log("¡Condición cumplida! Aplicando fondo...");
-    document.body.style.setProperty('background-image', 'url(' + fondoUrl + ')', 'important');
-    document.body.style.setProperty('background-size', 'cover', 'important');
-    document.body.style.setProperty('background-position', 'center', 'important');
-    document.body.style.setProperty('background-repeat', 'no-repeat', 'important');
-    document.body.style.setProperty('background-attachment', 'fixed', 'important');
-} else {
-    console.log("La condición falló: o falta el ID en la URL o falta la URL del fondo.");
-}
             tarjeta.innerHTML = `
                 <div class="curso-image-wrapper">
                     <img src="${imagenUrl}" alt="Miniatura de ${nombre}" class="curso-img">
@@ -128,15 +112,38 @@ async function cargarDetalleCurso() {
         const elMonto = document.getElementById('curso-monto');
         if (elMonto) elMonto.innerText = curso.costo || '0';
 
-
-
-
         const elMontotapado = document.getElementById('curso-precio-original');
         if (elMontotapado) {
             const textoStrapi = curso.costotapado || '';
             const textoFormateado = textoStrapi.replace(/(:\s*)(\$.*)/, '$1<span class="precio-original">$2</span>');         
             elMontotapado.innerHTML = textoFormateado;
         }
+
+
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const idEnUrl = urlParams.get('id');
+const fondoUrl = curso.fondocurso && curso.fondocurso.url ? curso.fondocurso.url : '';
+
+console.log("¿Hay ID en la URL?:", idEnUrl);
+console.log("¿Hay URL de fondo?:", fondoUrl);
+
+if (idEnUrl && fondoUrl) {
+    console.log("¡Condición cumplida! Aplicando fondo...");
+    document.body.style.setProperty('background-image', 'url(' + fondoUrl + ')', 'important');
+    document.body.style.setProperty('background-size', 'cover', 'important');
+    document.body.style.setProperty('background-position', 'center', 'important');
+    document.body.style.setProperty('background-repeat', 'no-repeat', 'important');
+    document.body.style.setProperty('background-attachment', 'fixed', 'important');
+} else {
+    console.log("La condición falló: o falta el ID en la URL o falta la URL del fondo.");
+}
+
+
+
+
+
 
 
 
